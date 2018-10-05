@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+</head>
+
+<style type="text/css">
+    .left{
+        float: left;     //向左浮动
+        
+        width: 60px;    //固定宽度
+        position: relative;//由于.left与.right-fix重合，且.right-fix在DOM树上的位置比.left要后，因此.right-fix会遮挡住.left，设置.left为relative可以让其冒出来。
+
+    }
+    .right-fix{
+        float: right;     //向右浮动
+        width: 100%;    //为了自适应设为100%
+        margin-left: -100px;//由于宽度设为100%，.right-fix遭到浏览器换行处理；因此通过设置负的margin值，在左侧制造出100px的空白，使.right-fix与.left重合（即处于同一行）
+    }
+    .right{
+        font-size:20px;
+   text-align: center;
+    font-family: "Josefin Sans";
+   
+        margin-left: 120px;    //由于.left和.right-fix重合了，因此给.right设置一个margin-left，避免内容区（.right）与.left重合。另外，120px - 100px = 多出来的20px实际上就相当于.left和.right之间的间隔了。
+    }
+    
+}
+
+</style>
+
+
+
+
+
+<body background="https://raw.githubusercontent.com/AndreaHe1102/picture/master/xingkong2.jpg">
+<audio src="engagement2.mp3" id="audio1" hidden="true" autoplay="true" loop="true"></audio>
+
+<div class="parent">
+    <div class="left">
+        <p  style="color:#acd6ff" "font-size:5px" id="txt" align="center">
+我的傻居居<br>
+其实从10.1开始，我每天对你说的“码代码”就是在做这份属于我俩儿的小礼物<br>
+我可是在你的眼皮底下进行的plan，但是我知道你不会猜到的哈哈哈哈哈哈<br>
+因为你真的不把我当程序员嘛，所以要给你展示一下程序员的小浪漫嘻嘻<br>
+我想，我们非常喜欢对方的这件事，我们彼此都非常坚定了<br>
+但好像还没有一个正式的告白捏，虽然你还没喜欢上我的时候我就告诉你了呢<br>
+冲锋的号角吹过一遍，胜利的一刻应该也要敲点鼓吧哈哈哈哈<br>
+所以我想我们或许需要一个正式的在一起的标记，也需要一个纪念日呢<br>
+选择10.5的原因是，这一天正好是我们生日的中间<br>
+我又看了一下黄历，大好之日（收成之日），万事皆宜，尤其结婚嘻嘻嘻嘻<br>
+虽然平时蛮骚，但是写下长篇情话这种事我真的也蛮害羞的(✿◡‿◡)<br>
+虽然我们现在不在同一个物理地区（至少作为外星人，我们都在地球上呢）<br>
+但我想我们现在已经如此喜欢彼此了，以后也会排除困难好好在一起的！<br>
+我真的真的非常非常非常喜欢你，从来没有如此喜欢过一个人<br>
+我们都还很年轻，而我往后的许许多多日子里都希望有你<br>
+在这一刻能想到的最浪漫的话就是<br><br>
+<b>往后余生，我只想操你</b><br>
+
+
+</p>
+<a href="together1.html"><img style="margin-left: auto; margin-right:auto;  display:block;" src="https://raw.githubusercontent.com/AndreaHe1102/picture/master/beatingheart.gif"></a>
+</div>
+    </div>
+    <div class="right-fix">
+        <div class="right">
+            <img src = "https://raw.githubusercontent.com/AndreaHe1102/picture/master/map3.png" alt="tuxiang" width="370" align="middle"><br><br><br><br><br><br><br>
+            <div style="color:#ffd0ff"> We've been together for</div>
+
+        <div class="days">
+        <span class="days-number" style="color:#ffd0ff">1921</span>
+        <span class="days-label"style="color:#ffd0ff">days</span>
+      </div>
+      <div class="seconds"style="color:#ffd0ff">15 hours 24 minutes 30 seconds</div>
+    </div>
+</div>
+
+  <script src="jquery-1.8.3.min.js" type="text/javascript"></script> 
+  <script>
+    function typeIn(obj) {
+      var tmpWords = obj.innerText;
+      var len = tmpWords.length;
+      var timer = {};
+      var i = 0;
+
+      timer = setInterval(function() {
+        obj.innerText = tmpWords.substring(0, i) + ' |';
+        i < len ? i++ : clearInterval(timer);
+      }, 200);
+    }
+
+    typeIn(txt);
+
+    document.ready = function() {
+    $(window).resize();
+    updateNumbers();
+};
+
+
+function updateNumbers() {
+    //var start_time = 1253980800;
+    var beginTime = "2018-10-05 12:00:00";  
+    var start_time = Date.parse(beginTime)
+   // var start_time =  new Date("2014-11-11 10:10:10").Format("yyyy-MM-dd hh:mm:ss");
+    var duration = parseInt(Date.now()- start_time)/1000;
+
+    var seconds = parseInt( duration % 60);
+    if (seconds < 10)
+        seconds = "0" + seconds;
+    duration = parseInt(duration / 60);
+    var minutes = duration % 60;
+    if (minutes < 10)
+        minutes = "0" + minutes;
+    duration = parseInt(duration / 60);
+    var hours = duration % 24;
+    if (hours < 10)
+        hours = "0" + hours;
+    duration = parseInt(duration / 24);
+    var days = duration;
+    $('.days-number').text("" + days);
+    $('.seconds').text(hours + " hours " + minutes + " minutes " + seconds + " seconds");
+    setTimeout("updateNumbers()", 1000);
+}
+  </script>
+  
+
+  
+
+
+
+
+
+
+
+
+</body>
+</html>
